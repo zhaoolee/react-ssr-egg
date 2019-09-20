@@ -9,9 +9,7 @@ const store = getServerStore();
 
 module.exports = async function(path, context){
   // 解析路由
-  console.log("routes---->>>>", routes);
-
-
+  console.log("~~~~~~routes---->>>>>>>>", routes, content);
   var content = ReactDOMServer.renderToString(<Provider store={store}>
     <StaticRouter location={path} context={context}>
       <Switch>
@@ -23,14 +21,14 @@ module.exports = async function(path, context){
   </Provider>)
   // var header_html = ReactDOMServer.renderToStaticMarkup(<Header />);
   content = `<html>
-  <head>
-  </head>
+    <head>
+    </head>
   <body>
   <div id="root">${content}</div>
   <script>window.context={state:${JSON.stringify(store.getState())}}</script>
   <script src="/index_client.js"></script>
   </body>
   </html>`;
-  console.log("content===>>", content);
+  console.log("content=================~~~>>", content);
   return content
 };

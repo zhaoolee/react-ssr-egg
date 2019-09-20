@@ -10,7 +10,7 @@ class Article extends React.Component{
   render(){
     return (<div>
     <Header/>
-    <p  className={article_css.title}><span>文章页面233</span></p>
+    <p  className={article_css.title}><span>文章页面22223</span></p>
     </div>)}
 }
 

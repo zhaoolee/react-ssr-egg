@@ -47,9 +47,9 @@
     "ci": "npm run lint && npm run cov",
     "autod": "autod",
     "dev": "npm-run-all --parallel build:**",
-    "build:egg": "nodemon --ext js,jsx --watch components --watch client --watch server --exec 'egg-bin dev'",
-    "build:client": "webpack --config webpack_client_config",
-    "build:server": "webpack --config webpack_server_config"
+    "build:egg": "nodemon --delay 2 --ext js,jsx --watch app/client/index.js --watch app/server/index.js --exec 'egg-bin dev'",
+    "build:client": "nodemon --ext js,jsx --watch app/components --watch app/client/index.js --exec 'webpack --config webpack_client_config'",
+    "build:server": "nodemon --ext js,jsx --watch app/components --watch app/server/index.js --exec 'webpack --config webpack_server_config'"
   },
   "ci": {
     "version": "10"

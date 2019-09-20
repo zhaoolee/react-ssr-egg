@@ -1,6 +1,6 @@
 'use strict';
 const Controller = require('egg').Controller;
-const index_server = require('../../server/index_server.js');
+const index_server = require('../server/index_server.js');
 
 class HomeController extends Controller {
   async index() {
