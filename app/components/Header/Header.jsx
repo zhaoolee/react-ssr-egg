@@ -7,7 +7,14 @@ import styles from './Header.css';
 class Header extends React.Component{
   constructor(props){
     super(props);
-
+  }
+  componentWillMount(){
+    console.log("::头部props:::", this.props)
+    if(this.props.staticContext){
+      this.props.staticContext.css.push(styles._getCss());
+      console.log("::::::头部处理后::", this.props.staticContext.css);
+    }
+    
   }
 
   render(){

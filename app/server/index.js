@@ -23,6 +23,9 @@ module.exports = async function(path, context){
   content = `<html>
     <head>
     </head>
+    <style>
+    ${context.css.join(" ")}
+    </style>
   <body>
   <div id="root">${content}</div>
   <script>window.context={state:${JSON.stringify(store.getState())}}</script>

@@ -10,6 +10,16 @@ class VList extends React.Component{
     super(props);
   }
 
+  componentWillMount(){
+    if(this.props.staticContext){
+      console.log("::list_css::>>", list_css);
+      console.log("::props::>>", this.props);
+      this.props.staticContext.css.push(list_css._getCss());
+      console.log("::after_props::>>", this.props)
+    }
+    
+  }
+
 
 
   componentDidMount(){
@@ -20,7 +30,7 @@ class VList extends React.Component{
   render(){
     return (
     <div>
-      <Header></Header>
+      <Header staticContext={this.props.staticContext}></Header>
       <span className={list_css.title}>文章列表页面</span>
       {this.props.list.map((value, index)=>{
         return <div className={list_css.atom} key={value}>{value}</div>
