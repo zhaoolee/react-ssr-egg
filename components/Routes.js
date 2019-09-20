@@ -3,9 +3,18 @@ import { Route } from 'react-router-dom';
 import List from './List/index.js';
 import Article from './Article/index.js';
 
-export default (
-	<div>
-		<Route path='/' exact component={List}></Route>
-		<Route path='/article' exact component={Article}></Route>
-	</div>
-)
+
+export default 
+[{
+    path: "/",
+    exact: true,
+    component: List,
+    key: "list",
+    loadData: List.loadData
+  },{
+    path: "/article",
+    exact: true,
+    component: Article,
+    key: "article",
+    loadData: Article.loadData,
+}]

@@ -1,20 +1,32 @@
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
-const { StaticRouter } =  require('react-router-dom');
-const Router = require('../components/Routes.js')["default"];
+const { StaticRouter, Route, Switch } =  require('react-router-dom');
+const routes  = require('../components/Routes.js')["default"];
+const Provider = require('react-redux')["Provider"];
+const getServerStore  = require('../store/index.js')["getServerStore"];
+const store = getServerStore();
+
 
 module.exports = async function(path, context){
-  var content = ReactDOMServer.renderToString(<StaticRouter location={path} context={context}>
-    {Router}
-  </StaticRouter>)
+  // 解析路由
+  console.log("routes---->>>>", routes);
+
+
+  var content = ReactDOMServer.renderToString(
+  <Provider store={store}>
+  <StaticRouter location={path} context={context}>
+    <Switch>
+      {routes.map((route, route_index)=>{
+        return <Route  {...route}/>
+        })}
+    </Switch>
+  </StaticRouter>
+  </Provider>)
   // var header_html = ReactDOMServer.renderToStaticMarkup(<Header />);
-  content = `<html>
-    <header></header>
-    <body>
-    <div id="root">${content}</div>
-    <script src="/index_client.js"></script>
-    </body>
-    </html>`;
+  content = `<html><head></heade>
+  <body>
+  <div id="root">${content}</div>
+  <script>window.context={state:${JSON.stringify(store.getState())}}</script><script src="/index_client.js"></script></body></html>`;
   console.log("content===>>", content);
   return content
 };

@@ -38,7 +38,7 @@
   "scripts": {
     "start": "egg-scripts start --daemon --title=egg-server-react-ssr-egg",
     "stop": "egg-scripts stop --title=egg-server-react-ssr-egg",
-    "dev": "nodemon -e jsx --watch components  --exec egg-bin dev",
+    "dev": "nodemon --ext js,jsx --watch components --watch server --watch client  --exec egg-bin dev",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",
@@ -46,9 +46,8 @@
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
     "autod": "autod",
-    "react": "npm-run-all --parallel react:**",
-    "react:server:dev:build:watch": "webpack --config \"./webpack_server_config\"",
-    "react:client:dev:build:watch": "webpack --config \"./webpack_client_config\""
+    "be": "npm-run-all --parallel build_watch:**",
+    "d": "nodemon --ext js,jsx --watch components --watch client --watch server --exec 'egg-bin dev' --exec 'webpack --config \"./webpack_server_config\"' --exec 'webpack --config \"./webpack_client_config\"'"
   },
   "ci": {
     "version": "10"

@@ -11,7 +11,36 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: [/\.jsx$/, /\.js$/], use: 'babel-loader' }
+      {
+        test: [/\.jsx$/, /\.js$/],
+        use: "babel-loader"
+      },
+      {
+        test: [/\.css$/],
+        use: [
+          "isomorphic-style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+              modules: true,
+              localsConvention: 'camelCase'
+            }
+          }
+        ]
+      },
+      {
+        test: [/\.png$/, /\.jpeg$/, /\.jpg$/, /\.svg$/, /\.gif$/],
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 9000,
+              publicPath: "/"
+            }
+          }
+        ]
+      }
     ]
   },
   watch: true,
