@@ -6,16 +6,14 @@ import { Provider } from 'react-redux'
 import { getClientStore } from '../store/index.js'
 
 const store = getClientStore();
-
 const App=()=>{
-  return(
-    <Provider store={store}>
+  return(<Provider store={store}>
       <BrowserRouter>
-        <Switch>{Routes.map((route, route_index)=>{return <Route {...route}/>})}</Switch>
+        <Switch>
+          {Routes.map((route, route_index)=>{
+            return <Route {...route}/>}
+          )}
+        </Switch>
       </BrowserRouter>
-    </Provider>
-  )
-}
-
-
-ReactDom.hydrate(<App/>, document.getElementById('root'));
+    </Provider>)}
+ReactDom.hydrate(<App />, document.getElementById('root'));

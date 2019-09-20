@@ -8,12 +8,10 @@ class Article extends React.Component{
     super(props);
   }
   render(){
-    return (
-    <div>
-      <Header></Header>
-      <span className={article_css.title}>文章页面</span>
-    </div>)
-  }
+    return (<div>
+    <Header/>
+    <p  className={article_css.title}><span>文章页面666</span></p>
+    </div>)}
 }
 
 export default Article;

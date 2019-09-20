@@ -12,21 +12,25 @@ module.exports = async function(path, context){
   console.log("routes---->>>>", routes);
 
 
-  var content = ReactDOMServer.renderToString(
-  <Provider store={store}>
-  <StaticRouter location={path} context={context}>
-    <Switch>
+  var content = ReactDOMServer.renderToString(<Provider store={store}>
+    <StaticRouter location={path} context={context}>
+      <Switch>
       {routes.map((route, route_index)=>{
         return <Route  {...route}/>
-        })}
+      })}
     </Switch>
   </StaticRouter>
   </Provider>)
   // var header_html = ReactDOMServer.renderToStaticMarkup(<Header />);
-  content = `<html><head></heade>
+  content = `<html>
+  <head>
+  </head>
   <body>
   <div id="root">${content}</div>
-  <script>window.context={state:${JSON.stringify(store.getState())}}</script><script src="/index_client.js"></script></body></html>`;
+  <script>window.context={state:${JSON.stringify(store.getState())}}</script>
+  <script src="/index_client.js"></script>
+  </body>
+  </html>`;
   console.log("content===>>", content);
   return content
 };
