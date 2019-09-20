@@ -4,7 +4,5 @@
 
 启动命令: 
 
-`npm run d`
-
-`npm run build`
+`npm run dev`
 
